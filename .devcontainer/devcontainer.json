@@ -2,6 +2,11 @@
     "name": "project_euler (C++)",
     // Ubuntu 24.04 with g++, gdb, cmake and make preinstalled.
     "image": "mcr.microsoft.com/devcontainers/cpp:1-ubuntu-24.04",
+    "features": {
+        // Codespaces installs Git LFS hooks when it clones the repo; without
+        // git-lfs in the container, the pre-push hook blocks every push.
+        "ghcr.io/devcontainers/features/git-lfs:1": {}
+    },
     "customizations": {
         "vscode": {
             "extensions": [
