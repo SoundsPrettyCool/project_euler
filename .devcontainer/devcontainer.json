@@ -1,0 +1,22 @@
+{
+    "name": "project_euler (C++)",
+    // Ubuntu 24.04 with g++, gdb, cmake and make preinstalled.
+    "image": "mcr.microsoft.com/devcontainers/cpp:1-ubuntu-24.04",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                // C/C++ IntelliSense and the gdb debugger used by launch.json (F5).
+                "ms-vscode.cpptools",
+                // Claude Code, guided by CLAUDE.md.
+                "anthropic.claude-code",
+                // Pull requests and issues for the GitHub repo.
+                "github.vscode-pull-request-github"
+            ],
+            "settings": {
+                "C_Cpp.default.cppStandard": "c++20",
+                "C_Cpp.default.compilerPath": "/usr/bin/g++"
+            }
+        }
+    },
+    "postCreateCommand": "g++ --version && gdb --version | head -n 1"
+}

@@ -1,3 +1,26 @@
 # project_euler
 
-- Repo to track all of the project euler questions that I finish
+My [Project Euler](https://projecteuler.net) solutions, written in C++ as a way to learn the language.
+
+Each problem has its own folder in `problems/` with a `.cpp` solution and a matching `.md` notes file:
+
+| #  | Problem | Solution | Notes |
+|----|---------|----------|-------|
+| 17 | Number Letter Counts | [cpp](problems/017_number_letter_counts/017_number_letter_counts.cpp) | [notes](problems/017_number_letter_counts/017_number_letter_counts.md) |
+| 31 | Coin Sums | [cpp](problems/031_coin_sums/031_coin_sums.cpp) | [notes](problems/031_coin_sums/031_coin_sums.md) |
+| 49 | Prime Permutations | [cpp](problems/049_prime_permutations/049_prime_permutations.cpp) | [notes](problems/049_prime_permutations/049_prime_permutations.md) |
+
+## Running
+
+Open a `.cpp` file in VS Code, then:
+
+- Run **C++: build and run active file** from `Terminal → Run Task`.
+- Press `F5` to debug.
+
+Binaries are written to `build/`.
+
+From the terminal:
+
+```sh
+mkdir -p build && g++ -std=c++20 -g -Wall -Wextra -Wpedantic problems/031_coin_sums/031_coin_sums.cpp -o build/031_coin_sums && ./build/031_coin_sums
+```
