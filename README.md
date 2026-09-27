@@ -12,15 +12,16 @@ Each problem has its own folder in `problems/` with a `.cpp` solution and a matc
 
 ## Running
 
+Builds use CMake. Every `problems/*/*.cpp` becomes its own executable in `build/bin/`.
+
 Open a `.cpp` file in VS Code, then:
 
-- Run **C++: build and run active file** from `Terminal → Run Task`.
+- Run **CMake: build and run active file** from `Terminal → Run Task`.
+- Press `Ctrl+Shift+B` to build only.
 - Press `F5` to debug.
-
-Binaries are written to `build/`.
 
 From the terminal:
 
 ```sh
-mkdir -p build && g++ -std=c++20 -g -Wall -Wextra -Wpedantic problems/031_coin_sums/031_coin_sums.cpp -o build/031_coin_sums && ./build/031_coin_sums
+cmake -S . -B build && cmake --build build --target 031_coin_sums && ./build/bin/031_coin_sums
 ```

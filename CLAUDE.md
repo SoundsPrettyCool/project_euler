@@ -27,19 +27,22 @@ Each problem has its own folder, `problems/NNN_problem_name/` (NNN zero-padded t
 - `NNN_problem_name.md`: my notes (approach, C++ concepts learned, gotchas).
   - Notes describe the approach and what I learned. They do **not** include the final answer.
 
-Compiled binaries go in the top-level `build/` folder (git-ignored).
+The top-level `build/` folder (git-ignored) holds the CMake build tree. Binaries are in `build/bin/`.
 
 ## Building and running
 
-- Standard: C++20, compiled with `g++`.
+- Standard: C++20, compiled with `g++` via CMake.
+- `CMakeLists.txt` globs `problems/*/*.cpp` and creates one executable target per file, named after the file (e.g. `031_coin_sums`). New problems are picked up automatically.
+- Binaries go in `build/bin/`. Programs are run from the repo root.
 - In VS Code, open a problem's `.cpp` file, then:
-  - **Build and run:** `Terminal → Run Task → C++: build and run active file` (default test task).
+  - **Build and run:** `Terminal → Run Task → CMake: build and run active file` (default test task).
   - **Build only:** `Ctrl+Shift+B`.
-  - **Debug:** `F5` ("C++: debug active file"). This builds with `-g` first.
+  - **Build every problem:** `Terminal → Run Task → CMake: build all problems`.
+  - **Debug:** `F5` ("CMake: debug active file").
 - From the terminal:
 
   ```sh
-  mkdir -p build && g++ -std=c++20 -g -Wall -Wextra -Wpedantic problems/031_coin_sums/031_coin_sums.cpp -o build/031_coin_sums && ./build/031_coin_sums
+  cmake -S . -B build && cmake --build build --target 031_coin_sums && ./build/bin/031_coin_sums
   ```
 
 ## Conventions

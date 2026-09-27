@@ -2,43 +2,47 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "C++: create build folder",
+            "label": "CMake: configure",
             "type": "process",
-            "command": "mkdir",
-            "args": ["-p", "${workspaceFolder}/build"],
+            "command": "cmake",
+            "args": ["-S", "${workspaceFolder}", "-B", "${workspaceFolder}/build", "-DCMAKE_BUILD_TYPE=Debug"],
             "problemMatcher": [],
             "presentation": {
                 "reveal": "silent"
-            }
+            },
+            "detail": "Generate the build system in build/"
         },
         {
-            "label": "C++: build active file",
+            "label": "CMake: build active file",
             "type": "process",
-            "command": "g++",
-            "args": [
-                "-std=c++20",
-                "-g",
-                "-O0",
-                "-Wall",
-                "-Wextra",
-                "-Wpedantic",
-                "${file}",
-                "-o",
-                "${workspaceFolder}/build/${fileBasenameNoExtension}"
-            ],
-            "dependsOn": "C++: create build folder",
+            "command": "cmake",
+            "args": ["--build", "${workspaceFolder}/build", "--target", "${fileBasenameNoExtension}"],
+            "dependsOn": "CMake: configure",
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
             "problemMatcher": ["$gcc"],
-            "detail": "Compile the open .cpp file into build/"
+            "detail": "Build the open problem's target into build/bin/"
         },
         {
-            "label": "C++: build and run active file",
+            "label": "CMake: build all problems",
             "type": "process",
-            "command": "${workspaceFolder}/build/${fileBasenameNoExtension}",
-            "dependsOn": "C++: build active file",
+            "command": "cmake",
+            "args": ["--build", "${workspaceFolder}/build", "--parallel"],
+            "dependsOn": "CMake: configure",
+            "group": "build",
+            "problemMatcher": ["$gcc"],
+            "detail": "Build every problem into build/bin/"
+        },
+        {
+            "label": "CMake: build and run active file",
+            "type": "process",
+            "command": "${workspaceFolder}/build/bin/${fileBasenameNoExtension}",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "dependsOn": "CMake: build active file",
             "group": {
                 "kind": "test",
                 "isDefault": true
@@ -50,7 +54,7 @@
                 "clear": true
             },
             "problemMatcher": [],
-            "detail": "Compile the open .cpp file and run it"
+            "detail": "Build the open problem's target and run it"
         }
     ]
 }
