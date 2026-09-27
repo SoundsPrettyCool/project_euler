@@ -27,6 +27,8 @@ Each problem has its own folder, `problems/NNN_problem_name/` (NNN zero-padded t
 - `NNN_problem_name.md`: my notes (approach, C++ concepts learned, gotchas).
   - Notes describe the approach and what I learned. They do **not** include the final answer.
 
+Shared helpers (e.g. file reading) live in `common/` as header-only files. Every problem can `#include "file_utils.hpp"` or `"string_utils.hpp"` without a path.
+
 The top-level `build/` folder (git-ignored) holds the CMake build tree. Binaries are in `build/bin/`.
 
 ## Building and running

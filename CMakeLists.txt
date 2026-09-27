@@ -19,10 +19,16 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # One executable per problem, named after its .cpp file (e.g. 022_names_scores).
 # CONFIGURE_DEPENDS re-runs the glob on each build, so new problems are picked up
 # without re-running cmake by hand.
+# Shared helpers in common/ (header-only). Linking to this target adds common/ to
+# the include path, so problems can write #include "file_utils.hpp".
+add_library(euler_common INTERFACE)
+target_include_directories(euler_common INTERFACE ${CMAKE_SOURCE_DIR}/common)
+
 file(GLOB PROBLEM_SOURCES CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/problems/*/*.cpp)
 
 foreach(source IN LISTS PROBLEM_SOURCES)
     get_filename_component(name ${source} NAME_WE)
     add_executable(${name} ${source})
     target_compile_options(${name} PRIVATE -Wall -Wextra -Wpedantic)
+    target_link_libraries(${name} PRIVATE euler_common)
 endforeach()
