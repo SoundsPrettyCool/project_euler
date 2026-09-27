@@ -31,7 +31,7 @@ The top-level `build/` folder (git-ignored) holds the CMake build tree. Binaries
 
 ## Building and running
 
-- Standard: C++20, compiled with `g++` via CMake.
+- Standard: C++23, compiled with `g++` via CMake.
 - `CMakeLists.txt` globs `problems/*/*.cpp` and creates one executable target per file, named after the file (e.g. `031_coin_sums`). New problems are picked up automatically.
 - Binaries go in `build/bin/`. Programs are run from the repo root.
 - In VS Code, open a problem's `.cpp` file, then:

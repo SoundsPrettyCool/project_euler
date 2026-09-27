@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.20)
 project(project_euler LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)  # -std=c++20, not -std=gnu++20
+set(CMAKE_CXX_EXTENSIONS OFF)  # -std=c++23, not -std=gnu++23
 
 # Default to a Debug build (-g, no optimization) so gdb works out of the box.
 if(NOT CMAKE_BUILD_TYPE)
